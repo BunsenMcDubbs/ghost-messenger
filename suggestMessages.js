@@ -11,17 +11,17 @@ function init() {
   submitButton = document.getElementsByClassName('_1ri')[0];
   messageLog = document.getElementsByClassName("_2ne _4kg")[0];
 
+  var previousMessage = "";
   var observer = new MutationObserver(function(mutations) {
-    this.previousMessage = "test";
-    console.log(observer);
   	mutations.forEach(function(mutation) {
       var li = messageLog.children[messageLog.children.length - 1];
       var rawText = li.children[1].children[1].children[1].innerText;
-      if (mutation.addedNodes.length === 0 || li.textContent === observer.previousMessage) { return; }
-      console.log(observer.previousMessage, "------", li.textContent);
-      observer.previousMessage = li.textContent;
-      console.log(observer.previousMessage, li.textContent);
-      console.log(messageLog.children.length, mutation.addedNodes, rawText);
+      if (mutation.addedNodes.length === 0 || li.textContent === previousMessage) {
+        previousMessage = li.textContent;
+        return;
+      }
+      console.log(new Date(), rawText);
+      previousMessage = li.textContent;
       var sender = rawText.substring(0, friendName.length);
       if (sender == friendName) {
         var newMessage = rawText.substring(friendName.length).trim();
