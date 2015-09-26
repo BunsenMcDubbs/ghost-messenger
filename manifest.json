@@ -9,11 +9,13 @@
     "default_icon": "icon.png"
   },
 
+  "web_accessible_resources": ["suggestion.html", "suggestion.css"],
+
   "content_scripts": [
     {
       "matches": ["*://www.facebook.com/messages/*"],
-      "js": ["suggestMessages.js"],
-      "run_at": "document_end"
+      "js": ["jquery-2.1.4.min.js", "suggestMessages.js"],
+      "css": ["suggestion.css"]
     }
   ],
 
