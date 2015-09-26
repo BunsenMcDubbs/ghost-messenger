@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+
+  "name": "Facebook Autochat",
+  "description": "Don't talk to friends, let your computer do it.",
+  "version": "0.1",
+
+  "browser_action": {
+    "default_icon": "icon.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://www.facebook.com/messages/*"],
+      "js": ["suggestMessages.js"],
+      "run_at": "document_end"
+    }
+  ],
+
+  "permissions": [
+    "https://graph.facebook.com/2.3/*",
+    "https://www.facebook.com/messages/*"
+  ]
+}
